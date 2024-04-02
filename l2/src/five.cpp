@@ -19,8 +19,9 @@ Five::Five(const std::initializer_list<unsigned char> &t): size(t.size()), data(
 }
 
 Five::Five(const string &t): size(t.length()), data(new unsigned char[t.length()]){
-    for(size_t i = 0; i < t.length(); ++i)
-        data[i] = t[size - 1 - i] - '0';
+    for(size_t i = 0; i < t.length(); ++i) {
+        data[i] = static_cast<unsigned char>(std::stoi(t.substr(size - 1 - i, 1)));
+    }
 }
 
 Five::Five(const Five& other): size(other.size), data(new unsigned char[other.size]){
@@ -44,11 +45,14 @@ void Five::print() const{
 }
 
 bool Five::operator ==(const Five& other) const{
-    if(size != other.size)
+    if(size != other.size) {
         return false;
-    for(size_t i = 0; i < size; ++i)
-        if(data[i] != other.data[i])
-            return true;
+    }
+    for(size_t i = 0; i < size; ++i) {
+        if(data[i] != other.data[i]){
+            return false;
+        }
+    }
     return true;
 }
 
@@ -86,11 +90,11 @@ Five& Five::operator =(const Five& other){
     return *this;
 }
 
-Five Five::operator +(const Five& other) const{
+Five Five::operator +(const Five& other) const {
     size_t max_s = max(size, other.size);
     Five result(max_s, 0);
     unsigned char rema = 0;
-    for(size_t i = 0; i < max_s; ++i){
+    for(size_t i = 0; i < max_s; ++i) {
         int sum = rema;
         if(i < size)
             sum += data[i];
@@ -99,7 +103,7 @@ Five Five::operator +(const Five& other) const{
         result.data[i] = sum % 5;
         rema = sum / 5;
     }
-    if(rema){
+    if(rema) {
         unsigned char* tmp = new unsigned char[max_s + 1];
         for(size_t i = 0; i < max_s; ++i)
             tmp[i] = result.data[i];
@@ -110,7 +114,6 @@ Five Five::operator +(const Five& other) const{
     }
     return result;
 }
-
 Five Five::operator -(const Five& other) const{
     Five result;
     if(*this < other)

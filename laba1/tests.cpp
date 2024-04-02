@@ -8,7 +8,7 @@ TEST(Delvowels, Fromlab) {
 TEST(Delvowels, Custom) {
     ASSERT_TRUE(remVowels("hello world!") == "hll wrld!");
     ASSERT_TRUE(remVowels("aeouAEOUaeou") == "");
-    ASSERT_TRUE(remVowels("xd lol too many words") == "xd ll t mny wrds");
+    ASSERT_TRUE(remVowels("xd lol too many words") == "xd ll t mn wrds");
 }
 
 TEST(Delvowels, Borderline) {

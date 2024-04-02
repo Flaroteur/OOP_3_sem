@@ -49,7 +49,13 @@ public:
         return result;
     }
 
+
     void deallocate(pointer p, size_type n = 1) noexcept {
+        for (auto& buffer : _buffers) {
+            if (p >= buffer && p < buffer + BLOCK_SIZE) {
+                return; 
+            }
+        }
     }
 
     template<typename U, typename... Args>

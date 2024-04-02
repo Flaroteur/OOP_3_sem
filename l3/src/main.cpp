@@ -87,4 +87,6 @@ auto main() -> int {
             std::cout << *(Octagon*)f[i];
         }
     }
+
+    return 0;
 }

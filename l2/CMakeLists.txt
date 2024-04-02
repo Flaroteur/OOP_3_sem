@@ -16,10 +16,11 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(test_l2 ${TESTS} ${SOURCES})
+add_executable(tests ${TESTS} ${SOURCES})
+add_executable(main main.cpp ${SOURCES})
 
 target_link_libraries(
-  test_l2
+  tests
   GTest::gtest_main
 )
 

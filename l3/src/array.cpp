@@ -17,12 +17,8 @@ Array::Array(size_t size) {
 }
 
 Array::~Array() {
-    for (size_t i = 0; i != _size; ++i) {
-        if (_figures[i] != nullptr)
-            delete _figures[i];
-    }
+
     delete[] _figures;
-    _figures = nullptr;
     _size = 0;
 }
 
@@ -37,16 +33,19 @@ auto Array::delete_figure(size_t index) -> void {
     if (index >= _size)
         throw std::invalid_argument("The array index is out of range");
 
-    delete _figures[index];
-    _figures[index] = nullptr;
+    if (_figures[index] != nullptr) {
+        _figures[index] = nullptr;
+    }
 }
-
 auto Array::update_figure(size_t index, Figure* f) -> void {
     if (index >= _size)
         throw std::invalid_argument("The array index is out of range");
 
-    if (_figures[index] != nullptr)
+    if (_figures[index] != nullptr) {
         delete _figures[index];
+        _figures[index] = nullptr;
+    }
+
     _figures[index] = f;
 }
 
@@ -54,7 +53,7 @@ auto Array::common_surface() -> double {
     double res = 0.0;
     for (size_t i = 0; i != _size; ++i) {
         if (_figures[i] != nullptr)
-            res += (double)*_figures[i];
+            res += static_cast<double>(*_figures[i]);
     }
 
     return res;
