@@ -1,0 +1,2 @@
+/usr/bin/ar qc liblw6.a CMakeFiles/lw6.dir/src/bear.cpp.o CMakeFiles/lw6.dir/src/elf.cpp.o CMakeFiles/lw6.dir/src/npc.cpp.o CMakeFiles/lw6.dir/src/rogue.cpp.o
+/usr/bin/ranlib liblw6.a

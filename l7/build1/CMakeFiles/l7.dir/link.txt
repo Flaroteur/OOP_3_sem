@@ -1,0 +1,2 @@
+/usr/bin/ar qc libl7.a CMakeFiles/l7.dir/src/bear.cpp.o CMakeFiles/l7.dir/src/elf.cpp.o CMakeFiles/l7.dir/src/npc.cpp.o CMakeFiles/l7.dir/src/rogue.cpp.o
+/usr/bin/ranlib libl7.a
